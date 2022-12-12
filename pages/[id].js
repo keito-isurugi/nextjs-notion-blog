@@ -168,16 +168,19 @@ export default function Post({ page, blocks }) {
   if (!page || !blocks) {
     return <div />;
   }
+  console.log(page.properties["名前"].title[0].plain_text)
   return (
     <div>
       <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
+        <title>{page.properties["名前"].title[0].plain_text}</title>
+        {/* <title>{page.properties["タイトル"].title[0].plain_text}</title> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <article className={styles.container}>
         <h1 className={styles.name}>
-          <Text text={page.properties.Name.title} />
+          <Text text={page.properties["名前"].title} />
+          {/* <Text text={page.properties.Name.title} /> */}
         </h1>
         <section>
           {blocks.map((block) => (

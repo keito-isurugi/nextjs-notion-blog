@@ -7,6 +7,9 @@ import styles from "./index.module.css";
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
+  // console.log(posts[0])
+  // console.log(posts[0].properties["名前"].title[0].plain_text
+  // )
   return (
     <div>
       <Head>
@@ -69,10 +72,13 @@ export default function Home({ posts }) {
                 <h3 className={styles.postTitle}>
                   <Link href={`/${post.id}`}>
                     <a>
-                      <Text text={post.properties.Name.title} />
+                      {/* なぜkeyが日本語？？ */}
+                      <Text text={post.properties["名前"].title} />
+                      {/* <Text text={post.properties.Name?.title} /> */}
                     </a>
                   </Link>
                 </h3>
+                
 
                 <p className={styles.postDescription}>{date}</p>
                 <Link href={`/${post.id}`}>
@@ -87,5 +93,15 @@ export default function Home({ posts }) {
   );
 }
 
-//SSGを追加
 
+//ISRを追加
+export const getStaticProps = async () => {
+  const database = await getDatabase(databaseId)
+  console.log(database)
+  return {
+    props: {
+      posts: database,
+    },
+    revalidate: 1,
+  }
+}
