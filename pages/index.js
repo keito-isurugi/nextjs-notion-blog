@@ -52,7 +52,7 @@ export default function Home({ posts }) {
           </div>
           <h1>Next.js + Notion API ブログ</h1>
           <p>
-           Notionと連携しているブログです。Notionに書き込めばそのままブログとして投稿できます。
+           Notionと連携しているブログです。Notionに書き込めばそのままブログとして投稿できます！
           </p>
         </header>
 
